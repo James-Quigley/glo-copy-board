@@ -28,23 +28,23 @@ const Index = () => {
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta charSet="utf-8" />
     </Head>
-    <style jsx global>{`
+    {/* <style jsx global>{`
       body { 
         background: #1b2126;
         font: 10px Arial;
         color: #fff;
       }
-    `}</style>
+    `}</style> */}
     <h1 style={
       {
         fontSize:'2.5rem'
       }
-    }>Select a Board</h1>
+    }>Copy Glo Board</h1>
     <h2 style={
       {
         fontSize:'1.5rem'
       }
-    }>We'll duplicate it!</h2>
+    }>Select a board and we'll duplicate it!</h2>
     <select onChange={(e) => {
         setSelectedBoard(e.target.value);
     }}>
