@@ -1,1 +1,1 @@
-glo-duplicate-board
+glo-copy-board
