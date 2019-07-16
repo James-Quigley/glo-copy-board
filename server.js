@@ -179,7 +179,8 @@ app.prepare()
             })),
             column_id: columnMap[card.column_id],
             id: undefined,
-            position: 0
+            position: 0,
+            assignees: undefined
         }));
 
 
