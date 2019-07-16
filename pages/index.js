@@ -28,13 +28,11 @@ const Index = () => {
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta charSet="utf-8" />
     </Head>
-    {/* <style jsx global>{`
-      body { 
-        background: #1b2126;
-        font: 10px Arial;
-        color: #fff;
-      }
-    `}</style> */}
+    <style jsx global>{`
+      body{margin:40px
+        auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0
+        10px}h1,h2,h3{line-height:1.2}
+    `}</style>
     <h1 style={
       {
         fontSize:'2.5rem'
