@@ -190,7 +190,9 @@ app.prepare()
 
     await Promise.all(cardBatchPromises);
 
-    res.sendStatus(200);
+    res.send({
+      id: board.id
+    });
   });
 
   server.get('*', (req, res) => {
