@@ -1,0 +1,14 @@
+{
+    "version": 1,
+    "name": "glo-copy-board",
+    "env": {
+      "AUTHORIZATION_URL": "https://app.gitkraken.com/oauth/authorize",
+      "TOKEN_URL": "https://api.gitkraken.com/oauth/access_token",
+      "CLIENT_ID": "@glo-copy-board-client-id",
+      "CLIENT_SECRET":"@glo-copy-board-client-secret",
+      "CALLBACK_URL": "https://glo-copy-board.now.sh/auth/callback",
+      "SESSION_SECRET": "@glo-copy-board-session-secret"
+    },
+    "alias": "https://glo-copy-board.now.sh",
+    "features": { "cloud": "v1" }
+  }
