@@ -33,7 +33,8 @@ export default withRouter((props) => {
       {
           loading ? 
             <div>
-                <p>Copying in progress</p>
+                <p>Copying in progress!</p>
+                <p>On a large board this could take a while...</p>
             </div> : 
             <div>
                 <h1>Done!</h1>

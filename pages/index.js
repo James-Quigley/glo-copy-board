@@ -43,20 +43,27 @@ const Index = () => {
         fontSize:'1.5rem'
       }
     }>Select a board and we'll duplicate it!</h2>
-    <select onChange={(e) => {
-        setSelectedBoard(e.target.value);
+    {
+      !boards.length ? <p>Loading...</p> :
+      <select onChange={(e) => {
+          setSelectedBoard(e.target.value);
+      }}>
+        {
+          boards.map(board => 
+            <option key={board.id} value={board.id} >
+              {board.name}
+            </option>)
+        }
+      </select>
+    }
+    <div style={{
+      marginLeft: '20px',
+      display: 'inline'
     }}>
       {
-        boards.map(board => 
-          <option key={board.id} value={board.id} >
-            {board.name}
-          </option>)
+        selectedBoard ? <Link href={'/board?id=' + selectedBoard}><button>Duplicate!</button></Link> : null
       }
-    </select>
-
-    {
-      selectedBoard ? <Link href={'/board?id=' + selectedBoard}><a>Duplicate!</a></Link> : null
-    }
+    </div>
   </div>
 )}
 
