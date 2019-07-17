@@ -96,7 +96,6 @@ async function createBigBoi() {
     const board_id = await createBoard();
     const column_ids = await createColumns(board_id);
     const label_ids = await createLabels(board_id);
-    console.log("TCL: createBigBoi -> label_ids", label_ids)
 
     const chooseNLabels = (n) => {
         let label_pool = label_ids.slice();
@@ -118,7 +117,6 @@ async function createBigBoi() {
         // const num_cards = getRandomInt(3, 8);
         for (let i = 0; i < num_cards; i++) {
             const labels = getRandomLabels();
-            // console.log(labels);
             const description = getRandomText();
             const name = randomTitle();
             const has_due_date = Math.random() > .5;

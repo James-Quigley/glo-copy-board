@@ -136,7 +136,6 @@ app.prepare()
             page++;
         }
     }
-    console.log("length", all_cards.length);
 
     // Create board w/name
     const {data: board} = await glo.post(`/boards`, {
@@ -170,7 +169,7 @@ app.prepare()
 
     // Create cards
 
-    const cardBatchPromises = [];
+    // const cardBatchPromises = [];
     const batches = Math.ceil(all_cards.length / 100);
     const rev = all_cards.reverse();
     for (let i = 0; i < batches; i++){
@@ -187,12 +186,10 @@ app.prepare()
         }));
 
 
-        cardBatchPromises.push(glo.post(`/boards/${board.id}/cards/batch`, {
+        await glo.post(`/boards/${board.id}/cards/batch`, {
             cards: mappedCardBatch
-        }));
+        });
     }
-
-    await Promise.all(cardBatchPromises);
 
     res.send({
       id: board.id
