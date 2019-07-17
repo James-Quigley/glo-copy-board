@@ -93,13 +93,15 @@ app.prepare()
     
     let has_more = true;
     let boards = [];
+    let page = 1;
     while (has_more){
-        const response = await glo.get(`/boards?fields=archived_columns%2Carchived_date%2Ccolumns%2Ccreated_by%2Ccreated_date%2Cinvited_members%2Clabels%2Cmembers%2Cname`)
+        const response = await glo.get(`/boards?page=${page}&per_page=1000&fields=archived_columns%2Carchived_date%2Ccolumns%2Ccreated_by%2Ccreated_date%2Cinvited_members%2Clabels%2Cmembers%2Cname`)
             .catch(error => {
                 console.error(error);
             })
-        has_more = response.headers.has_more;
+        has_more = response.headers['has-more'] === 'true';
         boards = boards.concat(response.data);
+        page++;
     }
     res.send(boards);
   });
@@ -129,11 +131,12 @@ app.prepare()
         let page = 1;
         while (has_more) {
             const cards_response = await glo.get(`/boards/${req.params.id}/columns/${column.id}/cards?page=${page}&per_page=1000&fields=archived_date%2Cassignees%2Cattachment_count%2Cboard_id%2Ccolumn_id%2Ccomment_count%2Ccompleted_task_count%2Ccreated_by%2Ccreated_date%2Cdue_date%2Cdescription%2Clabels%2Cname%2Ctotal_task_count%2Cupdated_date`);
-            has_more = cards_response.headers.has_more;
+            has_more = cards_response.headers['has-more'] === 'true';
             all_cards = all_cards.concat(cards_response.data);
             page++;
         }
     }
+    console.log("length", all_cards.length);
 
     // Create board w/name
     const {data: board} = await glo.post(`/boards`, {
