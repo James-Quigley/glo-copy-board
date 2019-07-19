@@ -2,7 +2,32 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
 import Router from 'next/router';
-import Head from 'next/head';
+import Container from '@material-ui/core/Container';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import Button from '@material-ui/core/Button';
+import Paper from '@material-ui/core/Paper';
+
+
+const useStyles = makeStyles(theme => ({
+  paper: {
+    // margin: '20px',
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
 
 const Index = () => {
   const [boards, setBoards] = useState([]);
@@ -22,61 +47,52 @@ const Index = () => {
   useEffect(() => {
     fetchBoards()
   }, []);
-  return (
-  <div>
-    <Head>
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <meta charSet="utf-8" />
-      <title>Glo Copy Board</title>
 
-      <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://glo-copy-board.now.sh"/>
-      <meta property="og:title" content="Glo Copy Board" />
-      <meta property="og:description" content="Quickly and easily duplicate your GitKraken Glo Boards - for free!"/>
-      
-      <meta name="twitter:card" content="summary" />
-      <meta name="twitter:domain" value="glo-copy-board.now.sh" />
-      <meta name="twitter:title" value="Glo Copy Board" />
-      <meta name="twitter:description" value="Quickly and easily duplicate your GitKraken Glo Boards - for free!" />
-      <meta name="twitter:url" value="https://glo-copy-board.now.sh" />
-    </Head>
-    <style jsx global>{`
-      body{margin:40px
-        auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0
-        10px}h1,h2,h3{line-height:1.2}
-    `}</style>
-    <h1 style={
-      {
-        fontSize:'2.5rem'
-      }
-    }>Copy Glo Board</h1>
-    <h2 style={
-      {
-        fontSize:'1.5rem'
-      }
-    }>Select a board and we'll duplicate it!</h2>
-    {
-      !boards.length ? <p>Loading...</p> :
-      <select onChange={(e) => {
-          setSelectedBoard(e.target.value);
+  const classes = useStyles();
+
+  return (
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <Paper style={{
+        // padding: '0px'
       }}>
-        {
-          boards.map(board => 
-            <option key={board.id} value={board.id} >
-              {board.name}
-            </option>)
-        }
-      </select>
-    }
-    <div style={{
-      marginLeft: '20px',
-      display: 'inline'
-    }}>
-      {
-        selectedBoard ? <Link href={'/board?id=' + selectedBoard}><button>Duplicate!</button></Link> : null
-      }
-    </div>
-  </div>
+        {/* <div className={classes.paper}> */}
+          <Typography component="h1" variant="h5">
+            Copy Glo Board
+          </Typography>
+          <Typography component="h2" variant="h6">
+          Select a board and we'll duplicate it!
+          </Typography>
+          <form className={classes.form} noValidate>
+            {
+              !boards.length ? <p>Loading...</p> :
+              <Select
+                fullWidth 
+                onChange={(e) => {
+                  setSelectedBoard(e.target.value);
+                }}
+                value={selectedBoard}>
+                {
+                  boards.map(board => 
+                    <MenuItem key={board.id} value={board.id} >
+                      {board.name}
+                    </MenuItem>)
+                }
+              </Select>
+            }
+            <div>
+              {
+                selectedBoard
+                  ? <Link href={'/board?id=' + selectedBoard}>
+                      <Button color="secondary" className={classes.submit} type="submit" fullWidth>Duplicate!</Button>
+                    </Link>
+                  : null
+              }
+            </div>
+          </form>
+        {/* </div> */}
+      </Paper>
+    </Container>
 )}
 
 export default Index;
