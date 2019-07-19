@@ -27,6 +27,18 @@ const Index = () => {
     <Head>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta charSet="utf-8" />
+      <title>Glo Copy Board</title>
+
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://glo-copy-board.now.sh"/>
+      <meta property="og:title" content="Glo Copy Board" />
+      <meta property="og:description" content="Quickly and easily duplicate your GitKraken Glo Boards - for free!"/>
+      
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" value="glo-copy-board.now.sh" />
+      <meta name="twitter:title" value="Glo Copy Board" />
+      <meta name="twitter:description" value="Quickly and easily duplicate your GitKraken Glo Boards - for free!" />
+      <meta name="twitter:url" value="https://glo-copy-board.now.sh" />
     </Head>
     <style jsx global>{`
       body{margin:40px
